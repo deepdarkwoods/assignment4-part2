@@ -1,0 +1,6 @@
+
+
+Start: Tue, 05 May 2015 06:39:00 -0800
+End: Tue, 05 May 2015 08:02:00 -0800
+Tasks: Creaeted Github repo, Initial mySQL setup
+
