@@ -4,3 +4,10 @@ Start: Tue, 05 May 2015 06:39:00 -0800
 End: Tue, 05 May 2015 08:02:00 -0800
 Tasks: Creaeted Github repo, Initial mySQL setup
 
+Start: Tue, 05 May 2015 11:17:00 -0800
+End: Tue, 05 May 2015 14:01:00 -0800
+Tasks: PHP, connect to Server
+
+Start: Wed, 06 May 2015 06:48:00 -0800
+End: Wed, 06 May 2015 08:05:00 -0800
+Tasks: Dynamic PHP HTML Table
