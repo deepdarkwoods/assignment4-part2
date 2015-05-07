@@ -84,7 +84,8 @@ if(isset($_GET["submit"]))
     $av = "INSERT INTO videos (name,category,length) VALUES (?,?,?)";    
     $stmt = $mysqli->prepare($av);
     $stmt->bind_param("ssi",$_GET["film"],$_GET["category"],$_GET["length"]);
-    $stmt->execute();      
+    $stmt->execute();
+    
     
    }
 
@@ -92,35 +93,23 @@ if(isset($_GET["submit"]))
 $ss = "SELECT * FROM videos";
 $displayMovies = $mysqli->query($ss);
 
+$cc ="SELECT DISTINCT category from videos";
+$displayCat = $mysqli($cc);
+
+echo "<select>";
+
+
+echo "</select>";
+
+
+
+
 ?>
 
 <table border="1">
     <tr><td>ID</td> <td>Name</td>   <td>Category</td>   <td>Length</td> <td>Available</td><td>Change Status</td><td>Remove</td>   </tr>
     
 <?php
-
-if(isset($_GET["idCheckout"]))
-    {
-        //$co = "UPDATE videos SET rented  = 
-       
-    }
-
-if(isset($_GET["idDelete"]))
-    {
-        echo $_GET["idDelete"];
-        $dr = 'DELETE FROM videos WHERE id= $_GET["idDelete"]';
-        if($mysqli->query($dr) === TRUE)
-            {
-                echo "Record Deleted Successfully!";
-            }
-        else
-            {
-                echo "Not Deleted";
-            }
-        
-    }
-
-
 
 $rentStatus="";
 while($row = $displayMovies->fetch_assoc())
@@ -135,28 +124,69 @@ while($row = $displayMovies->fetch_assoc())
             if($row["rented"] == 0)
             {$rentStatus="Available";} else {$rentStatus="Checked Out";}
             echo "<td>" . $rentStatus . "</td>";
+            
+            $id=$row["id"];
+                   
+            echo '<td><form action="video.php" method="POST">';
+            echo '<input type="submit" name="idCheckout" value="' . $id . '">';
+            echo '</form></td>';
+
+            
+            
+            echo '<td><form action="video.php" method="POST">';
+            echo '<input type="submit" name="idDelete" value="' . $id . '">';
+            echo '</form></td>';
            
-            
-?>
-    
-            <td><form action="video.php" method="GET">
-            <button type="submit" name="idCheckout" value='$row["id"]'>Check Out/In Movie</button></td>
-            
-             <td><form action="video.php" method="GET">
-             <button type="submit" name="idDelete" value=$row["id"]>Delete Movie</button></td>    
-    
+           
+           
+        
          
-             
-    
-<?php
-            
-            
-            
-            
         echo "</tr>";
     }   
+if(isset($_POST["idCheckout"]))
+    {
+        
+        
+ 
+        $checkStatus = "SELECT rented FROM videos WHERE id = " . $_POST["idCheckout"] . "";
+        
+        $recordreturned = $mysqli->query($checkStatus);
+        $inout = $recordreturned->fetch_object();
+    
+      
+        if($inout->rented == 0)
+            
+                {
+                    $checkOut = "UPDATE videos SET rented = '1' WHERE id = " . $_POST["idCheckout"] ;
+                    $mysqli->query($checkOut);
+                    echo "You checked out a movie !";
+                }
+                
+            else
+                {
+                
+                    $checkIn = "UPDATE videos SET rented = '0' WHERE id = ". $_POST["idCheckout"] ;
+                    $mysqli->query($checkIn);
+                    echo "You RETURNED THE MOVIE";
+                }
 
+       
+    }
 
+if(isset($_POST["idDelete"]))
+    {
+            echo "HELLO FROM DELETE";
+            $dr = "DELETE FROM videos WHERE id=" . $_POST["idDelete"];
+            
+            if($mysqli->query($dr) === TRUE)
+                {
+                    echo "Record Deleted Successfully!";
+                }
+            else
+                {
+                    echo "Not Deleted";
+                }
+    }
 
 ?>
     

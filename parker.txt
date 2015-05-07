@@ -11,3 +11,15 @@ Tasks: PHP, connect to Server
 Start: Wed, 06 May 2015 06:48:00 -0800
 End: Wed, 06 May 2015 08:05:00 -0800
 Tasks: Dynamic PHP HTML Table
+
+Start: Wed, 06 May 2015 11:05:00 -0800
+End: Wed, 06 May 2015 15:29:00 -0800
+Tasks: Retrieving Boolean 'Rented" from mysql
+
+Start: THU, 07 May 2015 06:31:00 -0800
+End: THU, 07 May 2015 09:54:00 -0800
+Tasks: Hung up on passing Variable to Delete Function
+
+Start: THU, 07 May 2015 11:16:00 -0800
+End: THU, 07 May 2015 13:44:00 -0800
+Tasks: Start on Drop Down Menu
